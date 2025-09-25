@@ -1,4 +1,42 @@
 {
   "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
-  "extends": ["ultracite"]
+  "extends": ["ultracite"],
+  "assist": {
+    "actions": {
+      "source": {
+        "organizeImports": {
+          "level": "on",
+          "options": {
+            "groups": [
+              { "type": true, "source": [":NODE:"] },
+              { "type": true, "source": [":PACKAGE:"] },
+              { "type": true, "source": ["@/**"] },
+              { "type": true, "source": [":PATH:"] },
+              [":NODE:"],
+              ":BLANK_LINE:",
+              [":PACKAGE:", "!@abis/**"],
+              ":BLANK_LINE:",
+              "@abis/**",
+              ":BLANK_LINE:",
+              ":PATH:",
+              ":BLANK_LINE:"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "linter": {
+    "rules": {
+      "nursery": {
+        "useConsistentArrowReturn": "off"
+      },
+      "style": {
+        "useBlockStatements": {
+          "level": "error",
+          "fix": "safe"
+        }
+      }
+    }
+  }
 }
