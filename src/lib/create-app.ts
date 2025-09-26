@@ -25,10 +25,12 @@ type AppEnv = {
 };
 
 export function createApp() {
-  const app = new OpenAPIHono<AppEnv>();
+  const app = new OpenAPIHono<AppEnv>({ strict: false });
 
   // Attach a per-request logger enriched with the request id
   app.use(pinoLogger());
   app.notFound(notFound);
   app.onError(onError);
+
+  return app;
 }
