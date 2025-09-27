@@ -35,7 +35,8 @@
         "useBlockStatements": {
           "level": "error",
           "fix": "safe"
-        }
+        },
+        "useNamingConvention": "off"
       },
       "suspicious": {
         "noConsole": {

@@ -3,6 +3,8 @@ import type { Logger } from "pino";
 
 import { OpenAPIHono } from "@hono/zod-openapi";
 
+import { defaultHook } from "./default-hook";
+
 import { notFound } from "@/middlewares/not-found";
 import { onError } from "@/middlewares/on-error";
 import { pinoLogger } from "@/middlewares/pino-logger";
@@ -17,15 +19,19 @@ type AppBindings = {
   outgoing: ServerResponse<IncomingMessage>;
 };
 
-type AppEnv = {
+export type AppEnv = {
   // biome-ignore-start lint/style/useNamingConvention: Hono Env generic requires capitalized key name
   Variables: AppVariables;
   Bindings: AppBindings;
   // biome-ignore-end lint/style/useNamingConvention: Hono Env generic requires capitalized key name
 };
 
+export function createRouter() {
+  return new OpenAPIHono<AppEnv>({ strict: false, defaultHook });
+}
+
 export function createApp() {
-  const app = new OpenAPIHono<AppEnv>({ strict: false });
+  const app = createRouter();
 
   // Attach a per-request logger enriched with the request id
   app.use(pinoLogger());
