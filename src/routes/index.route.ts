@@ -4,7 +4,7 @@ import { HttpStatus } from "@/constants/http-status";
 import { createRouter } from "@/lib/create-app";
 import { jsonContent } from "@/lib/open-api/json-content";
 
-export const router = createRouter().openapi(
+export const indexRouter = createRouter().openapi(
   createRoute({
     tags: ["Index"],
     method: "get",

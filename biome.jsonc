@@ -31,6 +31,9 @@
       "nursery": {
         "useConsistentArrowReturn": "off"
       },
+      "performance": {
+        "noNamespaceImport": "off"
+      },
       "style": {
         "useBlockStatements": {
           "level": "error",
