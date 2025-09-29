@@ -1,7 +1,7 @@
 import type { Hook } from "@hono/zod-openapi";
 import type { AppEnv } from "./create-app";
 
-import { UNPROCESSABLE_ENTITY } from "@/constants/http-status";
+import { HttpStatus } from "@/constants/http-status";
 
 // biome-ignore lint/suspicious/noExplicitAny: I cannot use unknown for the path generic
 export const defaultHook: Hook<unknown, AppEnv, any, unknown> = (
@@ -17,7 +17,7 @@ export const defaultHook: Hook<unknown, AppEnv, any, unknown> = (
           issues: result.error.issues,
         },
       },
-      UNPROCESSABLE_ENTITY.code
+      HttpStatus.UNPROCESSABLE_ENTITY.code
     );
   }
 };
